@@ -559,7 +559,7 @@ fpt_ln(fpt x)
   if (x < 0)
     return (0);
   if (x == 0)
-    return 0xffffffff;
+    return FPT_MIN;
 
   log2 = 0;
   xi = x;

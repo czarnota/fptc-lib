@@ -85,11 +85,19 @@ typedef int32_t fpt;
 typedef int64_t  fptd;
 typedef uint32_t fptu;
 typedef uint64_t fptud;
+
+#define FPT_MAX INT32_MAX
+#define FPT_MIN INT32_MIN
+
 #elif FPT_BITS == 64
 typedef int64_t fpt;
 typedef __int128_t fptd;
 typedef uint64_t fptu;
 typedef __uint128_t fptud;
+
+#define FPT_MAX INT64_MAX
+#define FPT_MIN INT64_MIN
+
 #else
 #error "FPT_BITS must be equal to 32 or 64"
 #endif
@@ -145,8 +153,6 @@ fpt_fracpart(fpt A)
 #define FPT_MINUS_ONE (-FPT_ONE)
 #define FPT_ONE_HALF  (FPT_ONE >> 1)
 #define FPT_TWO       (FPT_ONE + FPT_ONE)
-#define FPT_MAX       ((fpt)((fptu)~0 >> 1))
-#define FPT_MIN       (~FPT_MAX)
 #define FPT_ABS_MAX   FPT_MAX
 #define FPT_ABS_MIN   ((fpt)1)
 #define FPT_PI        fl2fpt(3.14159265358979323846)

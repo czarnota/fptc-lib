@@ -386,7 +386,7 @@ fpt_str(fpt A, char *str, int max_dec)
     str[slen++] = tmp[--ndec];
   str[slen++] = '.';
 
-  fr = (fpt_fracpart(A) << FPT_WBITS) & mask;
+  fr = ((fptud)(fpt_fracpart(A)) << FPT_WBITS) & mask;
   do {
     fr = (fr & mask) * 10;
 

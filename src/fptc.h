@@ -384,7 +384,7 @@ fpt_str(fpt A, char *str, int max_dec)
 
   ip = fpt_to_ll(A);
   do {
-    tmp[ndec++] = '0' + ip % 10;
+    tmp[ndec++] = (char)('0' + ip % 10);
     ip /= 10;
   } while (ip != 0);
 
@@ -396,7 +396,7 @@ fpt_str(fpt A, char *str, int max_dec)
   do {
     fr = (fr & mask) * 10;
 
-    str[slen++] = '0' + (fr >> FPT_BITS) % 10;
+    str[slen++] = (char)('0' + (fr >> FPT_BITS) % 10);
     ndec++;
   } while (fr != 0 && ndec < max_dec);
 

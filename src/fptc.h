@@ -162,6 +162,14 @@ fpt_fracpart(fpt A)
 #define FPT_HALF_PI   fl2fpt(3.14159265358979323846 / 2)
 #define FPT_E         fl2fpt(2.7182818284590452354)
 
+#ifdef FPT_OVERFLOW_HANDLING
+#define FPT_TO_FPT_OVERFLOW_HANDLING
+#define FPT_ADD_OVERFLOW_HANDLING
+#define FPT_SUB_OVERFLOW_HANDLING
+#define FPT_MUL_OVERFLOW_HANDLING
+#define FPT_DIV_OVERFLOW_HANDLING
+#endif
+
 /* Following block of code defines default overflow handling macros for math
  * operations. */
  

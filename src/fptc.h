@@ -116,7 +116,8 @@ typedef __uint128_t fptud;
 #define FPT_FMASK  (((fpt)1 << FPT_FBITS) - 1)
 
 #define fl2fpt(R) ((fpt)((R) * FPT_ONE + ((R) >= 0 ? 0.5 : -0.5)))
-#define i2fpt(I) ((fptd)(I) << FPT_FBITS)
+
+#define i2fpt(I) ((fpt)((fptd)(I) << FPT_FBITS))
 #define fpt2i(F) ((F) >> FPT_FBITS)
 
 #define i2fpt_norm(I,n) (               \

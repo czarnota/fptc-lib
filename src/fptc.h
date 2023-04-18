@@ -187,6 +187,12 @@ typedef __uint128_t fptud;
  * However floats can occur in places that will be optimised out during compilation. */
 #define fpt2fl(T) ((float) ((T)*((float)(1)/(float)(1 << FPT_FBITS))))
 
+static inline int
+fpt_to_ll(fpt A)
+{
+  return (long long)(A >> FPT_FBITS);
+}
+
 /* Adds two fpt numbers, returns the result. */
 static inline fpt
 fpt_add(fpt A, fpt B)
@@ -340,7 +346,8 @@ fpt_str(fpt A, char *str, int max_dec)
 {
   int ndec = 0, slen = 0;
   char tmp[12] = {0};
-  fptud fr, ip;
+  fptud fr;
+  long long ip;
   const fptud one = (fptud)1 << FPT_BITS;
   const fptud mask = one - 1;
 
@@ -364,7 +371,7 @@ fpt_str(fpt A, char *str, int max_dec)
     A *= -1;
   }
 
-  ip = fpt2i(A);
+  ip = fpt_to_ll(A);
   do {
     tmp[ndec++] = '0' + ip % 10;
     ip /= 10;

@@ -193,6 +193,13 @@ fpt_fracpart(fpt A)
 #define _fpt_div_underflow_handler return FPT_MIN;
 #endif
 
+#ifndef _fpt_to_fpt_overflow_handler
+#define _fpt_to_fpt_overflow_handler return FPT_MAX;
+#endif
+#ifndef _fpt_to_fpt_underflow_handler
+#define _fpt_to_fpt_underflow_handler return FPT_MIN;
+#endif
+
 #define fpt_abs(A) ((A) < 0 ? -(A) : (A))
 
 /* fpt is meant to be usable in environments without floating point support
@@ -204,6 +211,21 @@ static inline int
 fpt_to_ll(fpt A)
 {
   return (long long)(A >> FPT_FBITS);
+}
+
+static inline fpt
+int_to_fpt(int A)
+{
+  const long long val = A;
+
+  #ifdef FPT_TO_FPT_OVERFLOW_HANDLING
+  const long long max = (1LL << FPT_WBITS) - 1LL;
+  const long long min = -max - 1;
+  if (val > max) _fpt_to_fpt_overflow_handler;
+  if (val < min) _fpt_to_fpt_underflow_handler;
+  #endif
+
+  return (fpt)(val << FPT_FBITS);
 }
 
 /* Adds two fpt numbers, returns the result. */

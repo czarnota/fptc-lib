@@ -95,5 +95,9 @@ int main() {
 	puts("4^0.5=");
 	fpt_print(fpt_pow(fl2fpt(4), fl2fpt(0.5)));
 
+	puts("");
+	puts("int_to_fpt(1000000)=");
+	fpt_print(int_to_fpt(1));
+
 	return (0);
 }

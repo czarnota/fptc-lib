@@ -248,7 +248,7 @@ fpt_mul(fpt A, fpt B)
   }
   #endif
   
-  return (((fptd)A * (fptd)B) >> FPT_FBITS);
+  return (fpt)(((fptd)A * (fptd)B) >> FPT_FBITS);
 }
 
 
@@ -274,7 +274,7 @@ fpt_div(fpt A, fpt B)
   }
   #endif
   
-  return (((fptd)A << FPT_FBITS) / (fptd)B);
+  return (fpt)(((fptd)A << FPT_FBITS) / (fptd)B);
 }
 
 /*

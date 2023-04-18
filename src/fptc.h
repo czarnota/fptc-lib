@@ -133,7 +133,12 @@ typedef __uint128_t fptud;
   ((fpt)(((fptd)(A) * (fptd)(B)) >> FPT_FBITS))
 #define fpt_xdiv(A,B)                   \
   ((fpt)(((fptd)(A) << FPT_FBITS) / (fptd)(B)))
-#define fpt_fracpart(A) ((fpt)(A) & FPT_FMASK)
+
+static inline fpt
+fpt_fracpart(fpt A)
+{
+  return A & FPT_FMASK;
+}
 
 #define FPT_ONE       ((fpt)((fpt)1 << FPT_FBITS))
 #define FPT_ZERO      ((fpt)0)

@@ -277,9 +277,9 @@ fpt_div(fpt A, fpt B)
  */
 
 static inline int
-_pow(int x, unsigned int y) {
+_pow(int x, int y) {
   
-  unsigned int i;
+  int i;
   int ret = 1;
   
   for (i = 0; i<y; i++)
@@ -292,7 +292,7 @@ _pow(int x, unsigned int y) {
 static inline int
 fpt_scan(const char * s, fpt * num, int * br) {
   
-  unsigned int i = 0;
+  int i = 0;
   int ret = 0;
   int whole = 0;
   int decimal = 0;
